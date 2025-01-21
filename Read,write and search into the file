@@ -1,0 +1,54 @@
+def main():
+    while True:
+        print("\nChoose an option:")
+        print("1. Write to file")
+        print("2. Read from file")
+        print("3. Search in file")
+        print("4. Exit")
+        choice = input("Enter your choice (1/2/3/4): ")
+        
+        if choice == '1':
+            write_to_file()
+        elif choice == '2':
+            read_from_file()
+        elif choice == '3':
+            search_in_file()
+        elif choice == '4':
+            print("Exiting program...")
+            break
+        else:
+            print("Invalid choice, please try again.")
+            
+def write_to_file():
+    file_name = input("Enter the name of the file you want to write to: ")
+    with open(file_name, 'a') as f:
+        text = input("Enter text to write to the file: ")
+        f.write(text + '\n')
+    print(f"Text written to {file_name} successfully.")
+
+def read_from_file():
+    file_name = input("Enter the name of the file you want to read from: ")
+    try:
+        with open(file_name, 'r') as f:
+            content = f.read()
+        print("Content of the file:")
+        print(content)
+    except FileNotFoundError:
+        print(f"The file {file_name} does not exist.")
+
+def search_in_file():
+    file_name = input("Enter the name of the file you want to search in: ")
+    try:
+        with open(file_name, 'r') as f:
+            content = f.read()
+        search_word = input("Enter the word you want to search for: ")
+        if search_word in content:
+            print(f"The word '{search_word}' is found in the file.")
+        else:
+            print(f"The word '{search_word}' is not found in the file.")
+    except FileNotFoundError:
+        print(f"The file {file_name} does not exist.")
+
+
+if __name__ == "__main__":
+    main()
